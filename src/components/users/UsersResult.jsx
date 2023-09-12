@@ -1,25 +1,9 @@
-import { useEffect, useState } from "react"
+import { useContext } from "react"
 import UserItem from "./UserItem";
+import GithubContext from "../../context/github/GithubContext";
 
 function UsersResult() {
-    const [users, setUsers] = useState(['Emran']);
-
-    useEffect(() => {
-        fetchUsers();
-    }, []);
-
-
-    const fetchUsers = async () => {
-        const res = await fetch(`${process.env.REACT_APP_GIT_URL}/users`, {
-            headers: {
-                Authorization: process.env.TOKEN,
-            }
-        });
-
-        const data = await res.json();
-        console.log(data);
-        setUsers(data);
-    }
+    const { users } = useContext(GithubContext);
 
     return (
         <div className="grid grit-cols-1 gap-8 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2">
