@@ -11,6 +11,7 @@ export const GithubProvider = ({ children }) => {
     users: []
   }
   const [state, dispatch] = useReducer(githubReducer, initialState);
+
   //Get search result
   const searchUsers = async (text) => {
     const param = new URLSearchParams({
@@ -24,17 +25,24 @@ export const GithubProvider = ({ children }) => {
     });
 
     const { items } = await res.json();
-    console.log(items);
 
     dispatch({
       type: 'Get_User',
       payload: items,
     })
   }
+  //clear search
+  const clearUsers = async () => {
+    dispatch({
+      type: 'CLEAR',
+      payload: initialState,
+    })
+  }
 
   return <GithubContext.Provider value={{
     users: state.users,
     searchUsers,
+    clearUsers,
   }} >
     {children}
   </GithubContext.Provider>
