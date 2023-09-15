@@ -8,7 +8,8 @@ const token = process.env.TOKEN;
 
 export const GithubProvider = ({ children }) => {
   const initialState = {
-    users: []
+    users: [],
+    user: {},
   }
   const [state, dispatch] = useReducer(githubReducer, initialState);
 
@@ -27,10 +28,35 @@ export const GithubProvider = ({ children }) => {
     const { items } = await res.json();
 
     dispatch({
-      type: 'Get_User',
+      type: 'Get_Users',
       payload: items,
     })
   }
+
+
+  //Get single user
+  const getUser = async (login) => {
+
+    const res = await fetch(`${URL}/users/${login}`, {
+      headers: {
+        Authorization: token,
+      }
+    });
+
+    if (res.status === 404) {
+      window.location = '/notfound';
+    }
+    else {
+      const data = await res.json();
+
+      dispatch({
+        type: 'Get_User',
+        payload: data,
+      })
+    }
+
+  }
+
   //clear search
   const clearUsers = async () => {
     dispatch({
@@ -41,7 +67,9 @@ export const GithubProvider = ({ children }) => {
 
   return <GithubContext.Provider value={{
     users: state.users,
+    user: state.user,
     searchUsers,
+    getUser,
     clearUsers,
   }} >
     {children}
