@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+
+.custom-card-image .card.image-full:before {
+  border-radius: 0.5rem;
+  opacity: 0.40;
+}
+
+/* .custom-card-image .card.image-full:before {
+  border-radius: 0.5rem;
+  opacity: 0.45;
+} */
+
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -14,9 +27,4 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
-
-.custom-card-image .card.image-full :before {
-  border-radius: 0.5rem;
-  opacity: 0.40;
 }
