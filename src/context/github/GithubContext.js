@@ -85,9 +85,7 @@ export const GithubProvider = ({ children }) => {
   }
 
   return <GithubContext.Provider value={{
-    users: state.users,
-    user: state.user,
-    repos: state.repos,
+    ...state,
     searchUsers,
     getUser,
     getRepos,
