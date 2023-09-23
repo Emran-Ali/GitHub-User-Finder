@@ -4,13 +4,19 @@ import { useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import RepoSearch from "../repos/RepoSearch";
 import GithubContext from "../../context/github/GithubContext";
+import { getUser } from "../../context/github/GithubAction";
 
 function User() {
-    const { getUser, user } = useContext(GithubContext);
+    const { user, dispatch } = useContext(GithubContext);
     const param = useParams();
 
     useEffect(() => {
-        getUser(param.login);
+        const getUserData = async () => {
+            const userData = await getUser(param.login);
+            dispatch({ type: "Get_User", payload: userData });
+
+        };
+        getUserData();
     }, []);
 
     const { name, type, avatar_url, location, bio, blog, twitter_username,

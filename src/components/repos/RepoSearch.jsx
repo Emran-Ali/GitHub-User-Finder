@@ -2,13 +2,18 @@ import React, { useContext, useEffect } from 'react'
 import GithubContext from '../../context/github/GithubContext';
 import { useParams } from 'react-router-dom';
 import RepoItem from './RepoItem';
+import { getRepos } from '../../context/github/GithubAction';
 
 function RepoSearch() {
-    const { repos, getRepos } = useContext(GithubContext);
+    const { repos, dispatch } = useContext(GithubContext);
     const param = useParams();
 
     useEffect(() => {
-        getRepos(param.login);
+        const getUserData = async () => {
+            const userRepo = await getRepos(param.login)
+            dispatch({ type: "Get_Repos", payload: userRepo })
+        };
+        getUserData();
     }, []);
 
     return (
