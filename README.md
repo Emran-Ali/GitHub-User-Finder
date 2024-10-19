@@ -11,6 +11,7 @@ GitHub User Finder is a React-based web application that allows users to search 
 ## Technologies Used
 
 - **React**: For building the user interface.
+- **Tailwind CSS**: For styling.
 - **Axios**: For making HTTP requests to GitHub's API.
 - **GitHub API**: To fetch user data.
 - **Material-UI**: For UI components and styling.
@@ -23,4 +24,20 @@ To run this project locally, follow these steps:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/github-user-finder.git](https://github.com/Emran-Ali/BudgetApp.git](https://github.com/Emran-Ali/GitHub-User-Finder.git
+   git clone https://github.com/Emran-Ali/BudgetApp.git](https://github.com/Emran-Ali/GitHub-User-Finder.git
+   
+2. Install Dependency:
+   ```bash
+   npm i
+3. Create a .env file in the root directory and add your GitHub personal access token (if needed for rate limits):
+   ```bash
+   REACT_APP_GITHUB_API_TOKEN=your_personal_access_token
+
+4. Run Project
+    ```bash
+   npm start
+5. Open your browser and go to
+   ```bash
+   http://localhost:3000
+  
+
